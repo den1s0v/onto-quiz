@@ -9,3 +9,10 @@ Semantic technologies in domain-specific teaching
 #### Схемы и диаграммы общей архитектуры
 См. файл Astah [OntoQuiz_diagrams.asta](/OntoQuiz_diagrams.asta)
 
+Изображения диаграмм Astah:
+
+Внешние Интерфейсы
+<img src="/img/OntoQuiz_diagrams/ВнешниеИнтерфейсы.png">
+
+Внутренние Интерфейсы
+<img src="/img/OntoQuiz_diagrams/ВнутренниеИнтерфейсы.png">
