@@ -1,0 +1,69 @@
+@startuml
+' (a comment) Change blocks style
+' skinparam componentStyle uml2
+
+' Solid and dased lines & arrows:
+' - -> <-  -- --> <--
+' .. .>  <.  ..>  <..
+' It is also possible to change arrow direction by adding left, right, up or down keywords inside the arrow (shorthands like l,r,u or d are also supported).
+
+interface "Адаптер Рассуждателя {1}" as IRA
+interface "Стратегия\n выбора" as IStrategy
+interface "Вопрос" as IQuestion
+interface "Параметры\n Вопроса" as IQSpec
+interface "Интеракция" as IInteraction
+
+interface "Ответ" as IAnswer
+interface "Типы поддерживаемых вопросов" as IQuestionTypes
+
+frame "Ядро Вопросной Системы" {
+  IRA <.. [Выбор Вопроса {4}]
+  [Выбор Вопроса {4}] .u.> IStrategy
+  [Выбор Вопроса {4}] ..> IQuestionTypes
+  [Выбор Вопроса {4}] ..> [Модель Студента]
+  [Выбор Вопроса {4}] -u- IQSpec
+  () "Что объяснить" as IExplain
+  IRA <.. [Оценка ответа {3}]
+  [БД интеракций студентов]
+  () "Фиксация интеракций" as IInteractionSave
+  [БД интеракций студентов] <.. [Модель Студента]
+  [Модель Студента] -- IInteractionSave
+  [Оценка ответа {3}] .d.> IAnswer : require
+  [Оценка ответа {3}] ..> IExplain
+  [Оценка ответа {3}] ..> IInteractionSave
+  [Генератор Объяснений] -- IExplain 
+}
+
+[OWL+SWRL]  -d- IRA
+[Prolog]     -d- IRA
+["Хардкод"] -d- IRA
+
+[Генератор Объяснений] -u- Объяснение
+
+frame "Плагин Предметной Области" {
+  [Конвертер объяснения в ЧПЯ {5}] ..> Объяснение : use
+  [Генератор Условий {2}] .l.> IQSpec
+  [Генератор Условий {2}] -r-> IQuestion
+  [Генератор Условий {2}] -d-> IInteraction
+  [Генератор Условий {2}] .> [Схема ПрО]
+  () "Интерфейс\nУчителя" as ITeacherGUI
+  ITeacherGUI <.. [Генератор Условий {2}]
+  ' [Схема ПрО]
+  ITeacherGUI - [Интерфейс Учителя]
+  note "Концепты и \nнабор закономерностей" as note1
+  [Схема ПрО] .r. note1
+}
+
+[Конвертер объяснения в ЧПЯ {5}] -- ЧПЯ
+
+[Стратегия Выбора Вопроса] .> [Схема ПрО]
+[Стратегия Выбора Вопроса] -- IStrategy
+
+[Интерфейс Студента] -u- IAnswer
+[Интерфейс Студента] -l- IQuestionTypes
+[Интерфейс Студента] .r.> IQuestion : use
+[Интерфейс Студента] .u.> IInteraction : use
+[Интерфейс Студента] .> ЧПЯ : use
+
+
+@enduml
