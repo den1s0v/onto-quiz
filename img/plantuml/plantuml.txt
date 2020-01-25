@@ -1,0 +1,20 @@
+0. You can download PlantUML .jar here:
+https://plantuml.com/ru/download
+
+(jre & graphviz are also required)
+
+1. Start plantuml.jar in current directory to regenerate *.pu diagrams (and on each change of *.pu files).
+
+
+2. Here are a CMD commands to start plantuml.jar on Windows:
+
+set GRAPHVIZ_DOT=C:\your\path\to\graphviz-2.38\bin\dot.exe
+java -jar plantuml.jar
+
+
+3. You can download XML style for Notepad++ to enable PlantUML syntax highlighting here:
+https://github.com/brianmaher84/PlantUML_Notepad-_UDL
+
+Choose PlantUml.xml there (PlantUML_dark.xml does not look good for me).
+
+25.01.2020
