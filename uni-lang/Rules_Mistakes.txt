@@ -1,0 +1,63 @@
+
+act has unique begin.
+act has unique end.
+
+# Если следование А СОДЕРЖИТ оператор Б, то для любого акта А должен существовать акт Б, начало акта А < акт Б < конец акта А
+
+# Утв. 1
+if  A is a sequence,
+	B is a instruction set,
+	A has direct part B,
+	then for any act of A AA there is unique act of B AB and begin of AA < begin of AB and end of AB < end of AA and there is no act AC so that begin of AA < begin of AC< begin of AB and end of AB < end of AC < end of AA.
+{
+	# Ош. 3
+	if  AA is an act of A and AB1 is an act of B and (*AB1*) and AB2 is an acts of B and ( 
+		begin of AA < begin of AB2 and end of AB2 < end of AA and there is no act AC so that begin of AA < begin of AC< begin of AB2 and end of AB2 < end of AC < end of AA ) and AB1 < AB2
+	then there is DuplicateActsInSeqError E and E has errorneous act AB2 and E has sequence A.
+	
+	# Ош. 4
+	if  for any act of A AA there is no act of B AB that (*AB*)
+	then there is NoActsInSeqError E and E has sequence A.
+}
+
+
+#определим << для деревьев как непосредственно вложенно, для трассы <> directly in как непосредственно внутри (*)
+
+# Утв. 3
+if A is a instruction set,
+   B is a instruction set,
+   A has direct part B,
+   then for any act of B AB there is unique act of A AA and begin of AA < begin of AB and end of AB < end of AA and (there is no act AC so that begin of AA < begin of AC < begin of AB and end of AB < end of AC < end of AA)
+ {
+ #3 ошибки- А еще не начался (начало), А уже закончился (конец), А1 уже закончился а А2 еще не начался (середина)
+	# Утв. 1, Ош. 1
+	# ? Как указать, что акты относятся друг к другу? refers to?
+	if for any act of B AB and act of A AA and AA refers to AB and 
+	end of AB < begin of AA
+	then there is ActBeforeStartOfSeqError E and E has errorneous acts AB, AA.
+	# Утв. 1, Ош. 2
+	if for any act of B AB and act of A AA and AA refers to AB and end of AA < begin of AB
+	then there is ActAfterEndOfBlockError E and E has errorneous acts AB, AA.
+ }
+
+
+
+/*
+if 
+	act A has begin A_begin,
+	act A has end 	A_end,
+	act B has begin B_begin,
+	act B has end 	B_end,
+	A_begin < B_begin,
+	B_end < A_end,
+	then A contains B.
+{
+	if A_end < B_end,
+	then 
+}
+*/
+
+Trace is a act.
+Trace is contained in nothing.
+
+
