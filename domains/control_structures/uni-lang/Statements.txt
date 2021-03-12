@@ -3,12 +3,12 @@
 {
 	operator may have side effect.
 	alternative condition contains expression.
-	alternative condition may contains declaration of variable.
+	alternative condition may contain declaration of variable.
 	loop condition contains expression.
-	loop condition may contains declaration of variable.
-	for transition may contains expression.
-	for variable initialization may contains declaration of variable.
-	for variable initialization may contains expression.
+	loop condition may contain declaration of variable.
+	for transition may contain expression.
+	for variable initialization may contain declaration of variable.
+	for variable initialization may contain expression.
 
 	{
 		if SS - simple statement contains expression - E, then every act of SS triggers evaluation of E.
